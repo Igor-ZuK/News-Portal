@@ -1,0 +1,8 @@
+{% extends "base.html" %}
+{% block title %} News List {% endblock title %}
+{% block content %}
+    <h2>{{ news.title }}</h2>
+    <p>{{ news.created }}</p>
+    <p>{{ news.text }}</p>
+    <a href="/news/" target="_blank">Main</a>
+{% endblock content %}

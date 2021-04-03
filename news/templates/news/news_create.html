@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block title %} News List {% endblock title %}
+{% block content %}
+    <form action="" method="post">
+        {% csrf_token %}
+        <label for="title">Title</label>
+        <input type="text" name="title">
+        <br>
+        <label for="text">Text</label>
+        <input type="text" name="text">
+        <input type="submit" value="Submit">
+    </form>
+    <p style="padding: 20px"><a target="_blank" href="/news/">Main Page</a></p>
+{% endblock content %}

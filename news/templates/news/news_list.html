@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block title %} News List {% endblock title %}
+{% block content %}
+    <h2>Hyper news</h2>
+    <form action="/news/" method="get">
+        {% csrf_token %}
+        <input type="text" name="q">
+        <br>
+        <input type="submit" value="Search">
+    </form>
+    {% if news_list.0 %}
+        {% for news in news_list %}
+            {% if news.0 %}
+                <h4>{{ news.0.created }}</h4>
+                <ul>
+                    {% for el in news %}
+                        <li><a href="/news/{{ el.link }}/" style="padding-left:20px">{{ el.title }}</a></li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <h4>{{ news.created }}</h4>
+                <ul>
+                    <li><a href="/news/{{ news.link }}/" style="padding-left:20px">{{ news.title }}</a></li>
+                </ul>
+            {% endif %}
+        {% endfor %}
+    {% else %}
+        {% with news=news_list %}
+        <h4>{{ news.created }}</h4>
+                <ul>
+                    <li><a href="/news/{{ news.link }}/" style="padding-left:20px">{{ news.title }}</a></li>
+                </ul>
+        {% endwith %}
+    {% endif %}
+    <a href="/news/create/" style="display: block;padding-top: 20px;color: cyan; font-size: 16px;">Create own</a>
+{% endblock content %}
